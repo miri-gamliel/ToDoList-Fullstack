@@ -24,6 +24,8 @@ builder.Services.AddDbContext<ToDoDbContext>(options =>
 var app = builder.Build();
 
 app.UseCors("AllowAll");
+// Healthcheck endpoint
+app.MapGet("/ping", () => Results.Ok("pong"));
 
 app.MapGet("/todos", (ToDoDbContext db) => 
 {
@@ -61,5 +63,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    // In development, redirect root to Swagger UI
+    app.MapGet("/", () => Results.Redirect("/swagger"));
+}
+else
+{
+    // In production, return a simple message on root
+    app.MapGet("/", () => Results.Ok("API is running"));
 }
 app.Run();
