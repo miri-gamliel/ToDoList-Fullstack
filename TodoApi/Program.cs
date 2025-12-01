@@ -59,16 +59,16 @@ app.MapDelete("/todo/{id}",(int id,ToDoDbContext db)=>
     db.SaveChanges();
     return Results.Ok(item);
 });
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
     // In development, redirect root to Swagger UI
     app.MapGet("/", () => Results.Redirect("/swagger"));
-}
-else
-{
+//}
+//else
+//{
     // In production, return a simple message on root
     app.MapGet("/", () => Results.Ok("API is running"));
-}
+//}
 app.Run();
