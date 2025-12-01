@@ -64,7 +64,6 @@ app.MapDelete("/todo/{id}",(int id,ToDoDbContext db)=>
     app.UseSwagger();
     app.UseSwaggerUI();
     // In development, redirect root to Swagger UI
-    app.MapGet("/", () => Results.Redirect("/swagger"));
 //}
 //else
 //{
