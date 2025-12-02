@@ -19,7 +19,9 @@ builder.Services.AddCors(options =>
 var connectionString = builder.Configuration.GetConnectionString("ToDoDB");
 
 builder.Services.AddDbContext<ToDoDbContext>(options =>
-    options.UseMySql(connectionString,ServerVersion.AutoDetect(connectionString)));
+    options.UseMySql(connectionString,ServerVersion.AutoDetect(connectionString))
+     .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information));
+
 
 var app = builder.Build();
 
